@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quotes</title>
+    <style>
+        th, td, tr {border: 1px solid black;
+                    padding: 5px;
+                    }
+    </style>
+</head>
+
+<body> <h1>Hello {{request.session.name}}</h1><a href='/logout'>Logout</a>
+    <div class="quotes">  
+    <h2>Quotable Quotes</h2>
+            {% for quote in quotes %}
+        <p>{{quote.quoted_by}}: {{quote.message}}</p> 
+        
+        <h4>Posted by <a href="/users/{{quotes.posted_by.id}}">{{Quotes.posted_by}}</a></h4>
+        
+        <a href="/favorite/{{quote.id}}">Add to my list</a>
+        <br><br>
+    </div>
+    {% endfor %}
+    <br>
+
+  <div class="quotes">  
+  <h2>Your Favorites</h2>
+        {% for fav in favorite %}
+      <p>{{fav.user}} : {{fav.message}}</p> 
+      
+      <h4>Posted by <a href="/users/{{user.id}}">{{fav.user}}</a></h4>
+    <a href="/remove/{{quote.id}}">Remove from list</a>
+  </div> 
+        {% endfor %}
+        <br><br><br>
+       <h2>Contribute a Quote:</h2>
+    <form action="/newquote" method="post">
+        {% csrf_token %}
+        <p>Quoted by: <input type="text" name="quoted"></p>
+        <p>Message: <input type="text" name="msg"></p> 
+        <input type="submit" value="Submit">
+    </form>
+
+    
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Users</title>
+    </head>
+    <body>
+            {% for user in user %}
+        <p>Posts by {{user.name}}</p>
+        <p>Count: {{user.posted_by.all.count}}</p>
+            
+        <h2>Contributed Quotes:</h2>
+            {% for quote in quotes %}
+        <p>{{quote.quoted_by}}: {{quote.message}}</p>
+        {% endfor %}
+        {% endfor %}
+        <br>
+
+        <a href='/dashboard'>Dashboard</a>
+        <a href='/logout'>Logout</a>
+        
+        
+    </body>
+    </body>
+</html>
